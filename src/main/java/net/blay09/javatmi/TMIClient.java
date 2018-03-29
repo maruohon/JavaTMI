@@ -1,11 +1,14 @@
 package net.blay09.javatmi;
 
-import net.blay09.javairc.*;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import net.blay09.javairc.IRCAdapter;
+import net.blay09.javairc.IRCConfiguration;
+import net.blay09.javairc.IRCConnection;
+import net.blay09.javairc.IRCMessage;
+import net.blay09.javairc.IRCUser;
 
 public class TMIClient {
     private static final Pattern SUBSCRIBE_PATTERN = Pattern.compile("([^ ]+) just subscribed( with Twitch Prime)?!");
@@ -20,11 +23,7 @@ public class TMIClient {
     }
 
     public TMIClient(String username, String oauth, Collection<String> channels, TMIListener listener) {
-        this(defaultBuilder()
-                .nick(username)
-                .password(oauth)
-                .autoJoinChannels(channels)
-                .build(), listener);
+        this(defaultBuilder().setNick(username).setPassword(oauth).setAutoJoinChannels(channels), listener);
     }
 
     public TMIClient(final IRCConfiguration configuration, final TMIListener listener) {
@@ -172,6 +171,10 @@ public class TMIClient {
         twitchCommands = new TwitchCommands(client);
     }
 
+    public TMIListener getListener() {
+        return this.listener;
+    }
+
     public boolean isConnected() {
         return client.isConnected();
     }
@@ -218,12 +221,12 @@ public class TMIClient {
         return "justinfan" + (int) (Math.floor((Math.random() * 80000) + 1000));
     }
 
-    public static IRCConfiguration.IRCConfigurationBuilder defaultBuilder() {
+    public static IRCConfiguration defaultBuilder() {
         return IRCConfiguration.builder()
-                .server("irc.chat.twitch.tv")
-                .port(6667)
-                .capability("twitch.tv/commands")
-                .capability("twitch.tv/tags");
+                .setServer("irc.chat.twitch.tv")
+                .setPort(6667)
+                .addCapability("twitch.tv/commands")
+                .addCapability("twitch.tv/tags");
     }
 
     private static int tryParseInt(String s, int defaultVal) {

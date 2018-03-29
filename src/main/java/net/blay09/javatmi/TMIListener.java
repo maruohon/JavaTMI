@@ -25,7 +25,7 @@ public interface TMIListener {
 
     void onHosted(TMIClient client, String channel, String username, int viewers);
 
-	/**
+    /**
      * Twitch IRC processes occasionally need to be restarted. When this happens, this method will be called. After a short period of time, the connection will be closed.
      * @param client the client backing up this connection
      */

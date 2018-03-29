@@ -1,16 +1,11 @@
 package net.blay09.javatmi;
 
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import net.blay09.javairc.IRCMessage;
 import net.blay09.javairc.IRCUser;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-
-@Data
 public class TwitchUser {
 
     private final IRCUser user;
@@ -103,5 +98,115 @@ public class TwitchUser {
         }
         twitchUser.userType = UserType.fromTag(message.getTagByKey("user-type"));
         return twitchUser;
+    }
+
+    public IRCUser getUser()
+    {
+        return user;
+    }
+
+    public String[] getBadges()
+    {
+        return badges;
+    }
+
+    public List<TwitchEmote> getEmotes()
+    {
+        return emotes;
+    }
+
+    public String getColor()
+    {
+        return color;
+    }
+
+    public int getUserId()
+    {
+        return userId;
+    }
+
+    public UserType getUserType()
+    {
+        return userType;
+    }
+
+    public boolean isMod()
+    {
+        return mod;
+    }
+
+    public boolean isSubscriber()
+    {
+        return subscriber;
+    }
+
+    public int getSubscribedMonths()
+    {
+        return subscribedMonths;
+    }
+
+    public int getCheeredBits()
+    {
+        return cheeredBits;
+    }
+
+    public boolean isTurbo()
+    {
+        return turbo;
+    }
+
+    public void setBadges(String[] badges)
+    {
+        this.badges = badges;
+    }
+
+    public void setEmotes(List<TwitchEmote> emotes)
+    {
+        this.emotes = emotes;
+    }
+
+    public void setColor(String color)
+    {
+        this.color = color;
+    }
+
+    public void setDisplayName(String displayName)
+    {
+        this.displayName = displayName;
+    }
+
+    public void setUserId(int userId)
+    {
+        this.userId = userId;
+    }
+
+    public void setUserType(UserType userType)
+    {
+        this.userType = userType;
+    }
+
+    public void setMod(boolean mod)
+    {
+        this.mod = mod;
+    }
+
+    public void setSubscriber(boolean subscriber)
+    {
+        this.subscriber = subscriber;
+    }
+
+    public void setSubscribedMonths(int subscribedMonths)
+    {
+        this.subscribedMonths = subscribedMonths;
+    }
+
+    public void setCheeredBits(int cheeredBits)
+    {
+        this.cheeredBits = cheeredBits;
+    }
+
+    public void setTurbo(boolean turbo)
+    {
+        this.turbo = turbo;
     }
 }
