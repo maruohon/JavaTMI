@@ -4,9 +4,9 @@ plugins {
     id 'maven'
 }
 
-def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
+//def BUILD_NUMBER = System.getenv("BUILD_NUMBER") ?: "0"
 
-version = "0.1." + BUILD_NUMBER
+version = "0.1.36"// + BUILD_NUMBER
 group = "net.blay09.lib"
 archivesBaseName = "JavaTMI"
 

@@ -74,7 +74,17 @@ public class TwitchUser {
                 }
                 int colonIdx = emoteData.indexOf(':');
                 if (colonIdx != -1) {
-                    int emoteId = Integer.parseInt(emoteData.substring(0, colonIdx));
+                    int emoteId;
+
+                    try
+                    {
+                        emoteId = Integer.parseInt(emoteData.substring(0, colonIdx));
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        continue;
+                    }
+
                     String[] occurences = emoteData.substring(colonIdx + 1).split(",");
                     for (String occurenceData : occurences) {
                         int dashIdx = occurenceData.indexOf('-');
